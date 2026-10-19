@@ -1,0 +1,15 @@
+{
+  "name": "Ubicación y Equipamiento Urbano",
+  "short_name": "Ubicación",
+  "description": "Medición de distancias y factor de ubicación, acceso y equipamiento urbano para valoración de inmuebles.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#12161C",
+  "theme_color": "#12161C",
+  "icons": [
+    { "src": "icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

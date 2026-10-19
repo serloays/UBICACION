@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ubicación y Equipamiento</title>
+<meta name="description" content="Medición de distancias y factor de ubicación, acceso y equipamiento urbano para valoración de inmuebles.">
+<meta name="theme-color" content="#12161C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Ubicación">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+  html,body{margin:0;padding:0;background:#12161C;}
+  body{min-height:100vh;-webkit-text-size-adjust:100%;}
+  #aviso{
+    max-width:480px;margin:0 auto;padding:40px 20px;color:#E8E6E0;
+    font-family:'Space Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.6;
+  }
+  #aviso h1{font-size:17px;margin:0 0 10px;color:#E9B44C;letter-spacing:.01em;}
+  #aviso p{font-size:13.5px;color:#8A93A0;margin:0 0 10px;}
+  #aviso code{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:12px;color:#E8E6E0;}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<div id="aviso">
+  <h1>Cargando la calculadora…</h1>
+  <p>Si este mensaje no desaparece, la página no pudo descargar sus librerías. Revisa la conexión y vuelve a cargar.</p>
+  <p id="aviso-detalle"></p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js" crossorigin></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+<script src="app.js"></script>
+<script>
+(function () {
+  var aviso = document.getElementById('aviso');
+  var detalle = document.getElementById('aviso-detalle');
+  function falla(msg) {
+    if (detalle) detalle.textContent = msg;
+  }
+  try {
+    if (typeof React === 'undefined' || typeof ReactDOM === 'undefined') {
+      falla('No se cargó React desde cdnjs.cloudflare.com.');
+      return;
+    }
+    if (typeof UbicacionEquipamiento !== 'function') {
+      falla('No se cargó app.js.');
+      return;
+    }
+    ReactDOM.createRoot(document.getElementById('root'))
+      .render(React.createElement(UbicacionEquipamiento));
+    aviso.parentNode.removeChild(aviso);
+  } catch (e) {
+    falla('Error al iniciar: ' + (e && e.message ? e.message : e));
+  }
+})();
+</script>
+</body>
+</html>
